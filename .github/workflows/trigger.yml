@@ -1,0 +1,6 @@
+name: trigger
+
+on: push
+
+jobs:
+    run: ./action
