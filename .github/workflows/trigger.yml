@@ -6,4 +6,6 @@ jobs:
     job_id: 
         runs-on: [ubuntu-latest]
         steps:
-            - run: ./action/entrypoint.sh
+            - run: |
+                chmod +x ./action/entrypoint.sh
+                sh ./action/entrypoint.sh
