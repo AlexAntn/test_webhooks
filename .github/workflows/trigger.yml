@@ -3,4 +3,7 @@ name: trigger
 on: push
 
 jobs:
-    run: ./entrypoint.sh
+    job_id: 
+        runs-on: [ubuntu-latest]
+        steps:
+            - run: ./entrypoint.sh
