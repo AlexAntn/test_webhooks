@@ -3,4 +3,10 @@ name: trigger
 on: push
 
 jobs:
-    run: ./action
+    job_id: 
+        runs-on: [ubuntu-latest]
+        steps:
+            - uses: actions/checkout@v2
+            - run: |
+                chmod +x ./action/entrypoint.sh
+                sh ./action/entrypoint.sh
