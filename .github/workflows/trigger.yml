@@ -1,8 +1,8 @@
 name: trigger
 
-on:
-    release:
-        types: [published, created, edited]        
+on: pull-request
+    #release:
+        #types: [published, created, edited]        
 
 jobs:
     job_id: 
