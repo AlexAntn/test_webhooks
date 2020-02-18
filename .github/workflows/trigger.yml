@@ -1,6 +1,8 @@
 name: trigger
 
-on: push
+on:
+    release:
+        types: [published, created, edited]        
 
 jobs:
     job_id: 
@@ -11,5 +13,4 @@ jobs:
           with:
             token: ${{ secrets.TOKEN_VALUE_HERE }}
             repository: icub-tech-iit/code
-            event-type: trigger
-            #client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+            event-type: superbuild_release
