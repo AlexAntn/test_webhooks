@@ -7,7 +7,7 @@ jobs:
         runs-on: [ubuntu-latest]
         steps:
             - name: Repository Dispatch
-              uses: peter-evans/repository-dispatch@v1.0.0
+              uses: actions/repository-dispatch@v1.0.0
               with:
                     token: ${{ secrets.TOKEN_VALUE_HERE }}
                     repository: username/my-repo
