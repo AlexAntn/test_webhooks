@@ -21,7 +21,11 @@ jobs:
 
         - uses: actions/checkout@v2
         - name: change file
-          run: echo '${{ steps.get_version.outputs.VERSION }}' >> ./testing
+          run: |
+                ls
+                cat ./testing
+                echo '${{ steps.get_version.outputs.VERSION }}' >> ./testing
+                cat ./testing
           env:
                 CI: true
         - name: Commit files
