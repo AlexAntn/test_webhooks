@@ -19,24 +19,5 @@ jobs:
             event-type: trigger
             client-payload: '{"version": "${{ steps.get_version.outputs.VERSION }}"}'
 
-        - uses: actions/checkout@v2
-        - name: change file
-          run: |
-                ls
-                cat ./testing
-                echo '${{ steps.get_version.outputs.VERSION }}' >> ./testing
-                cat ./testing
-          env:
-                CI: true
-        - name: Commit files
-          run: |
-                echo ${{ github.ref }}
-                git add ./*
-                git config --local user.email "action@github.com"
-                git config --local user.name "GitHub Action"
-                git commit -m "ci: Automated build push" -a | exit 0
-        - name: Push changes
-          if: github.ref == 'refs/heads/master'
-          uses: ad-m/github-push-action@master
-          with:
-                github_token: ${{ secrets.GITHUB_TOKEN }}
+# Just testing
+
