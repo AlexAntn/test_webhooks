@@ -16,8 +16,8 @@ jobs:
           with:
             token: ${{ secrets.TOKEN_VALUE_HERE }}
             repository: AlexAntn/test_actions
-            event-type: trigger2
-            client-payload: '{"version": "${{ steps.get_version.outputs.VERSION }}", "type" : "trigger2"}'
+            event-type: trigger
+            client-payload: '{"version": "${{ steps.get_version.outputs.VERSION }}", "type" : "trigger"}'
 
 # Just testing
 
