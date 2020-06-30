@@ -11,6 +11,7 @@ jobs:
   - name: $github
     run:   |
         echo "${{ github.event.issue.body }}"
+        echo "${{ toJson(github) }}"
   - name: Repository Dispatch
     uses: peter-evans/repository-dispatch@v1
     with:
