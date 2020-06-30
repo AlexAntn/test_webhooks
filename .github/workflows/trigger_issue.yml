@@ -17,4 +17,4 @@ jobs:
       token: ${{ secrets.TOKEN_VALUE_HERE }}
       repository: AlexAntn/test_actions
       event-type: announcement_launched
-      client-payload: '{"announcement": "${{ github.event.issue.body }}", "type" : "announcement_launched"}'
+      client-payload: '{"announcement": "${{ toJson(github.event.issue.body) }}", "type" : "announcement_launched"}'
