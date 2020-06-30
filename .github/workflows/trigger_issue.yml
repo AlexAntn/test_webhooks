@@ -12,10 +12,17 @@ jobs:
     run:   |
         echo "${{ github.event.issue.body }}"
         echo "${{ toJson(github) }}"
+  - name: get date
+    run: |
+      echo "$(date +'%Y%m')" > DATE_
+      echo $(cat DATE_)     
+      echo "$(date +'%B %Y')" > DATE_SPELLED
+      echo $(cat DATE_SPELLED)   
+
   - name: Repository Dispatch
     uses: peter-evans/repository-dispatch@v1
     with:
       token: ${{ secrets.TOKEN_VALUE_HERE }}
       repository: AlexAntn/test_actions
       event-type: announcement_launched
-      client-payload: '{"announcement": ${{ toJson(github.event.issue.body) }}, "type" : "announcement_launched"}'
+      client-payload: '{"announcement": ${{ toJson(github.event.issue.body) }}, "ann-id": ${{ toJson(DATE_) }}, "title": ${{ toJson(github.event.issue.title) }}, "date": "${{ toJson(DATE_SPELLED) }}", "summary": "???", "image": "???", "type" : "announcement_launched"}'
