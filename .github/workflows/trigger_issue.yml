@@ -11,9 +11,10 @@ jobs:
   - name: $github
     run:   |
         echo "${{ github.event.issue.body }}"
-        echo "${{ toJson(github.event.issue) }}"
-        echo "${{ toJson(github.event) }}"
-        echo "${{ toJson(github) }}"
-#        echo "$GITHUB_CONTEXT"
-    env:
-     GITHUB_CONTEXT: ${{ toJson(github) }}
+  - name: Repository Dispatch
+    uses: peter-evans/repository-dispatch@v1
+    with:
+      token: ${{ secrets.TOKEN_VALUE_HERE }}
+      repository: AlexAntn/test_actions
+      event-type: announcement-launched
+      client-payload: '{"announcement": "${{ github.event.issue.body }}", "type": "announcement"}'
