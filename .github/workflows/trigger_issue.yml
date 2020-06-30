@@ -11,6 +11,9 @@ jobs:
   - name: $github
     run:   |
         echo ${{ github.event.comment.body }}
-        echo "$GITHUB_CONTEXT"
+        echo ${{ github.event.comment }}
+        echo ${{ github.event }}
+        echo ${{ github }}
+#        echo "$GITHUB_CONTEXT"
     env:
      GITHUB_CONTEXT: ${{ toJson(github) }}
