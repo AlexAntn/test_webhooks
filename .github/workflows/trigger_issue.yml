@@ -10,10 +10,10 @@ jobs:
   steps:
   - name: $github
     run:   |
-        echo ${{ github.event.comment.body }}
-        echo ${{ github.event.comment }}
-        echo ${{ github.event }}
-        echo ${{ github }}
+        echo "${{ github.event.comment.body }}"
+        echo "${{ github.event.comment }}"
+        echo "${{ github.event }}"
+        echo "${{ github }}"
 #        echo "$GITHUB_CONTEXT"
     env:
      GITHUB_CONTEXT: ${{ toJson(github) }}
