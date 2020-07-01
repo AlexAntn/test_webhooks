@@ -17,15 +17,18 @@ jobs:
       echo "$(date +'%Y%m')" > DATE_
       echo $(cat DATE_)     
       echo "$(date +'%B %Y')" > DATE_SPELLED
-      echo $(cat DATE_SPELLED)   
+      echo $(cat DATE_SPELLED)  
+       
+  - name: Get current date
+    id: date
+    run: |
+        echo "::set-output name=date::$(date +'%Y%m')"
+        echo "::set-output name=date_spelled::$(date +'%B %Y')"
 
   - name: Repository Dispatch
     uses: peter-evans/repository-dispatch@v1
-    env:
-      DATE_: ${{ echo $(cat DATE_) }}
-      DATE_SPELLED: ${{ echo $(cat DATE_SPELLED) }}
     with:
       token: ${{ secrets.TOKEN_VALUE_HERE }}
       repository: AlexAntn/test_actions
       event-type: announcement_launched
-      client-payload: '{"description": ${{ toJson(github.event.issue.body) }}, "id": ${{ env.DATE_ }}, "title": ${{ toJson(github.event.issue.title) }}, "date": ${{ env.DATE_SPELLED }}, "summary": "???", "image": "???", "type" : "announcement_launched"}'
+      client-payload: '{"description": ${{ toJson(github.event.issue.body) }}, "id": ${{ steps.date.outputs.date }}, "title": ${{ toJson(github.event.issue.title) }}, "date": ${{ steps.date.outputs.date_spelled }}, "summary": "???", "image": "???", "type" : "announcement_launched"}'
