@@ -22,8 +22,8 @@ jobs:
   - name: Repository Dispatch
     uses: peter-evans/repository-dispatch@v1
     env:
-      DATE_: $(cat DATE_)
-      DATE_SPELLED: $(cat DATE_SPELLED)
+      DATE_: ${{ $(cat DATE_) }}
+      DATE_SPELLED: ${{ $(cat DATE_SPELLED) }}
     with:
       token: ${{ secrets.TOKEN_VALUE_HERE }}
       repository: AlexAntn/test_actions
