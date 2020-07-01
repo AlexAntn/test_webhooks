@@ -26,3 +26,6 @@ jobs:
       repository: AlexAntn/test_actions
       event-type: announcement_launched
       client-payload: '{"description": ${{ toJson(github.event.issue.body) }}, "id": ${{ toJson(DATE_) }}, "title": ${{ toJson(github.event.issue.title) }}, "date": "${{ toJson(DATE_SPELLED) }}", "summary": "???", "image": "???", "type" : "announcement_launched"}'
+    env:
+     DATE_: $(cat DATE_)
+     DATE_SPELLED: $(cat DATE_SPELLED)
