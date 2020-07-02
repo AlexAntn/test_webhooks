@@ -15,12 +15,13 @@ jobs:
 
   - name: get release/announcement
     id: rel_annou
-    run: echo "::set-output name=release::'true'"
-#      if [[ ${{ github.event.issue.title }} == "*Release*" ]];
-#      then
-#      else
-#        echo "::set-output name=release::'false'"
-#      fi
+    run: |
+      if [[ ${{ github.event.issue.title }} == *"Release"* ]];
+      then
+        echo "::set-output name=release::true"
+      else
+        echo "::set-output name=release::false"
+      fi
   - name: Get current date
     id: date
     run: |
