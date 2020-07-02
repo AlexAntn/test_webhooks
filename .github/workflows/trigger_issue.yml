@@ -25,8 +25,8 @@ jobs:
   - name: Get summary
     id: summary
     run: |
-      echo "${{ github.event.issue.body }}" | sed -nr 's/.*### Brief description of the announcement(.*)### Detailed context.*/\1/p'
-      echo "::set-output name=summary::"$(echo "${{ github.event.issue.body }}" | sed -nr 's/.*### Brief description of the announcement(.*)### Detailed context.*/\1/p')"
+      echo "${{ toJson(github.event.issue.body) }}" | sed -nr 's/.*### Brief description of the announcement(.*)### Detailed context.*/\1/p'
+      echo "::set-output name=summary::"$(echo "${{ toJson(github.event.issue.body) }}" | sed -nr 's/.*### Brief description of the announcement(.*)### Detailed context.*/\1/p')"
       
       
   - name: Get current date
