@@ -16,7 +16,7 @@ jobs:
   - name: get release/announcement
     id: rel_annou
     run: |
-      if [[ ${{ github.event.issue.title }} == *"Release"* ]]
+      if [[ "${{ github.event.issue.title }}" == *"Release"* ]]
       then
         echo "::set-output name=release::true"
       else
