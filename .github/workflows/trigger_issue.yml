@@ -25,7 +25,8 @@ jobs:
   - name: Get summary
     id: summary
     run: |
-      echo -e "${{ github.event.issue.body }}"
+      var=${{ github.event.issue.body }}
+      echo "$var"
       sed ':a;N;$!ba;s/\n/ /g' <github.event.issue.body >temp1.txt 
       sed ':a;N;$!ba;s/\r/ /g' <temp1.txt >temp2.txt
       sed -nr 's/.*### Brief description of the announcement(.*)### Detailed context.*/\1/p' <temp2.txt >temp3.txt
