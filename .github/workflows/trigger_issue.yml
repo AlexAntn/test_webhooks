@@ -25,7 +25,6 @@ jobs:
   - name: Get summary
     id: summary
     run: |
-      echo "(${{ github.event.issue.body }})"
       echo (${{ github.event.issue.body }}))
       echo "$(${{ github.event.issue.body }})"
       echo "${{ toJson(github.event.issue.body) }}"
