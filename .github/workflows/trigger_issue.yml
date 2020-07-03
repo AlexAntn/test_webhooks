@@ -8,11 +8,6 @@ jobs:
  dump:
   runs-on: ubuntu-latest
   steps:
-  - name: $github
-    run:   |
-        echo "${{ github.event.issue.body }}"
-        echo "${{ toJson(github) }}"
-
   - name: get release/announcement
     id: rel_annou
     run: |
