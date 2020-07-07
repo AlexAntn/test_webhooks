@@ -18,6 +18,11 @@ jobs:
         echo "::set-output name=release::false"
       fi
       
+  - name: print even
+    id: event_print
+    run: |
+      echo ${{ github.event }}
+      
 #      tr '"' '\"' <'${{ github.event.issue.body }}' > temp.txt
 #      tr -d '\n' <temp.txt >temp1.txt 
 #      tr -d '\r' <temp1.txt >temp2.txt
