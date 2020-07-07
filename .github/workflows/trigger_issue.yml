@@ -16,7 +16,7 @@ jobs:
       echo $ISSUE_CONTEXT > temp_title.txt
       sed -nr 's/.*"title": (.*), "updated.*/\1/p' <temp_title.txt >temp_title1.txt
       sed ':a;N;$!ba;s/"/\"/g' <temp_title1.txt >temp_title2.txt
-      sed ':a;N;$!ba;s/\x27/\\x27/g' <temp_title2.txt >title.txt
+      sed ':a;N;$!ba;s/\x27/\\\x27/g' <temp_title2.txt >title.txt
       echo $(cat title.txt)
       if [[ $(cat title.txt) == *"Release"* ]]
       then
@@ -49,7 +49,7 @@ jobs:
       sed ':a;N;$!ba;s/\r/ /g' <temp1.txt >temp2.txt
       sed -nr 's/.*### Brief description of the announcement(.*)### Detailed context.*/\1/p' <temp2.txt >temp3.txt
       sed ':a;N;$!ba;s/"/\"/g' <temp3.txt >temp4.txt
-      sed ':a;N;$!ba;s/\x27/\\x27/g' <temp4.txt >temp5.txt
+      sed ':a;N;$!ba;s/\x27/\\\x27/g' <temp4.txt >temp5.txt
       echo "::set-output name=summary::$(cat temp5.txt)"
       echo $(cat temp5.txt)
       
@@ -61,7 +61,7 @@ jobs:
       echo $ISSUE_CONTEXT > temp_title.txt
       sed -nr 's/.*"title": (.*), "updated.*/\1/p' <temp_title.txt >temp_title1.txt
       sed ':a;N;$!ba;s/"/\"/g' <temp_title1.txt >temp_title2.txt
-      sed ':a;N;$!ba;s/\x27/\\x27/g' <temp_title2.txt >title.txt
+      sed ':a;N;$!ba;s/\x27/\\\x27/g' <temp_title2.txt >title.txt
       echo "::set-output name=title::$(cat title.txt)"
       echo $(cat title.txt)
       
@@ -75,7 +75,7 @@ jobs:
       sed ':a;N;$!ba;s/\r/\\r/g' <temp1.txt >temp2.txt
       sed -nr 's/.*"body": (.*), "closed_at.*/\1/p' <temp2.txt >temp3.txt
       sed ':a;N;$!ba;s/"/\"/g' <temp3.txt >temp4.txt
-      sed ':a;N;$!ba;s/\x27/\\x27/g' <temp4.txt >temp5.txt
+      sed ':a;N;$!ba;s/\x27/\\\x27/g' <temp4.txt >temp5.txt
       echo "::set-output name=description::$(cat temp5.txt)"
       echo $(cat temp5.txt)        
       
