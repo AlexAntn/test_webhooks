@@ -21,7 +21,8 @@ jobs:
   - name: print even
     id: event_print
     run: |
-      github.event.issue | jq 'body'
+      ${{ github.event.issue }} | sed ':a;N;$!ba;s/"/\"/g' >temppp.txt
+      echo $(cat temppp.txt) 
       
 #      tr '"' '\"' <'${{ github.event.issue.body }}' > temp.txt
 #      tr -d '\n' <temp.txt >temp1.txt 
