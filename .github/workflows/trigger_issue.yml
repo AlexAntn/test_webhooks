@@ -21,7 +21,7 @@ jobs:
   - name: print even
     id: event_print
     run: |
-      echo ${{ github.event }}
+      echo ${{ toJson(github.event) }}
       
 #      tr '"' '\"' <'${{ github.event.issue.body }}' > temp.txt
 #      tr -d '\n' <temp.txt >temp1.txt 
