@@ -14,8 +14,11 @@ jobs:
       GITHUB_CONTEXT: ${{ toJson(github.event.issue) }}
     run: |
       echo $ISSUE_CONTEXT > temp_title.txt
+      echo $(cat temp_title.txt)
       sed -nr 's/.*"title": (.*), "updated.*/\1/p' <temp_title.txt >temp_title1.txt
+      echo $(cat temp_title1.txt)
       sed ':a;N;$!ba;s/"/\"/g' <temp_title1.txt >temp_title2.txt
+      echo $(cat temp_title2.txt)
       sed ':a;N;$!ba;s/\x27/\\\x27/g' <temp_title2.txt >title.txt
       echo $(cat title.txt)
       if [[ $(cat title.txt) == *"Release"* ]]
