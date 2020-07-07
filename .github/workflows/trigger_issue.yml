@@ -75,7 +75,7 @@ jobs:
     run: |
       echo $ISSUE_CONTEXT > temp.txt
       echo $(cat temp.txt)    
-      sed ':a;N;$!ba;s/\n/\\\n/g' <temp.txt >temp1.txt 
+      sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/\\\n/g' <temp.txt >temp1.txt
       echo $(cat temp1.txt)    
       sed ':a;N;$!ba;s/\r//g' <temp1.txt >temp2.txt
       echo $(cat temp2.txt)    
@@ -87,6 +87,7 @@ jobs:
       echo "::set-output name=description::$(cat temp5.txt)"
       echo $(cat temp5.txt)        
       
+#      sed ':a;N;$!ba;s/\n/\\\n/g' <temp.txt >temp1.txt 
   - name: Get current date
     id: date
     run: |
