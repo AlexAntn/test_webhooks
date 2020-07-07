@@ -75,11 +75,11 @@ jobs:
     run: |
       echo $ISSUE_CONTEXT > temp.txt
       echo $(cat temp.txt)    
-      sed -nr ':a;N;$!ba;s/\n/\\\n/g' <temp.txt >temp1.txt
+      sed -nr 's/.*"body": (.*), "closed_at.*/\1/p' <temp.txt >temp1.txt
       echo $(cat temp1.txt)    
-      sed ':a;N;$!ba;s/\r/ /g' <temp1.txt >temp2.txt
+      sed ':a;N;$!ba;s/\n/\\\n/g' <temp1.txt >temp2.txt 
       echo $(cat temp2.txt)    
-      sed -nr 's/.*"body": (.*), "closed_at.*/\1/p' <temp2.txt >temp3.txt
+      sed ':a;N;$!ba;s/\r/ /g' <temp2.txt >temp3.txt
       echo $(cat temp3.txt)    
       sed ':a;N;$!ba;s/"/\"/g' <temp3.txt >temp4.txt
       echo $(cat temp4.txt)    
