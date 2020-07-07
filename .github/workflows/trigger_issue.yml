@@ -21,7 +21,7 @@ jobs:
   - name: print even
     id: event_print
     run: |
-      jq --raw-output 'body | .[]'  github.event.issue
+      github.event.issue | jq 'body'
       
 #      tr '"' '\"' <'${{ github.event.issue.body }}' > temp.txt
 #      tr -d '\n' <temp.txt >temp1.txt 
