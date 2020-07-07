@@ -21,7 +21,7 @@ jobs:
   - name: print even
     id: event_print
     run: |
-      echo $(JSON.parse(github.event.issue.body) )
+      echo $(JSON.parse(${{ github.event.issue.body }}) )
       ${{ github.event.issue.body }} | sed ':a;N;$!ba;s/"/\"/g' >temppp.txt
       echo $(cat temppp.txt) 
       
