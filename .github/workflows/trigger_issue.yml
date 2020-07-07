@@ -43,9 +43,13 @@ jobs:
       sed -nr 's/.*### Brief description of the announcement(.*)### Detailed context.*/\1/p' <temp2.txt >temp3.txt
       echo "::set-output name=summary::$(cat temp3.txt)"
       echo $(cat temp3.txt)
-#      echo ${{ github.event.issue.body }} | tr -d '\n' | tr -d '\r' | sed -nr 's/.*### Brief description of the announcement(.*)### Detailed context.*/\1/p'
-#      echo "::set-output name=summary::$(echo ${{ toJson(github.event.issue.body) }} | tr -d '\n' | tr -d '\r' | sed -nr 's/.*### Brief description of the announcement(.*)### Detailed context.*/\1/p')
       
+  - name: Get title
+    id: title
+    run: |
+      echo $ISSUE_CONTEXT | grep -o -P '(?<="title": ").*(?=",)' > title.txt
+      echo "::set-output name=title::$(cat title.txt)"
+      echo $(cat title.txt)
       
   - name: Get current date
     id: date
@@ -59,4 +63,4 @@ jobs:
       token: ${{ secrets.TOKEN_VALUE_HERE }}
       repository: AlexAntn/test_actions
       event-type: announcement_launched
-      client-payload: '{"description": ${{ toJson(github.event.issue.body) }}, "id": "${{ steps.date.outputs.date }}", "title": ${{ toJson(github.event.issue.title) }}, "date": "${{ steps.date.outputs.date_spelled }}", "summary": "${{ steps.summary.outputs.summary }}", "image": "???", "type" : "announcement_launched", "release": "${{ steps.rel_annou.outputs.release }}"}'
+      client-payload: '{"description": ${{ toJson(github.event.issue.body) }}, "id": "${{ steps.date.outputs.date }}", "title": ${{ steps.title.outputs.title }}, "date": "${{ steps.date.outputs.date_spelled }}", "summary": "${{ steps.summary.outputs.summary }}", "image": "???", "type" : "announcement_launched", "release": "${{ steps.rel_annou.outputs.release }}"}'
