@@ -25,7 +25,7 @@ jobs:
   - name: Get summary
     id: summary
     run: |
-      var=${{ github.event.issue.body }}
+      var=${{ toJson(github.event.issue.body) }}
       echo "$var"
       sed ':a;N;$!ba;s/\n/ /g' <github.event.issue.body >temp1.txt 
       sed ':a;N;$!ba;s/\r/ /g' <temp1.txt >temp2.txt
