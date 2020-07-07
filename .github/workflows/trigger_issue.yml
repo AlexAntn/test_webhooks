@@ -75,7 +75,7 @@ jobs:
     run: |
       echo $ISSUE_CONTEXT > temp.txt
       echo $(cat temp.txt)    
-      sed -nr 's/\n/\\\n/g' <temp.txt >temp1.txt
+      sed -nr ':a;N;$!ba;s/\n/\\\n/g' <temp.txt >temp1.txt
       echo $(cat temp1.txt)    
       sed ':a;N;$!ba;s/\r/ /g' <temp1.txt >temp2.txt
       echo $(cat temp2.txt)    
