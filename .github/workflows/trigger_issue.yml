@@ -11,7 +11,7 @@ jobs:
   - name: get release/announcement
     id: rel_annou
     env:
-      GITHUB_CONTEXT: ${{ toJson(github.event.issue) }}
+      ISSUE_CONTEXT: ${{ toJson(github.event.issue) }}
     run: |
       echo $ISSUE_CONTEXT > temp_title.txt
       echo $(cat temp_title.txt)
@@ -34,9 +34,9 @@ jobs:
   - name: print even
     id: event_print
     env:
-      GITHUB_CONTEXT: ${{ toJson(github.event.issue) }}
+      ISSUE_CONTEXT: ${{ toJson(github.event.issue) }}
     run: |
-      echo $GITHUB_CONTEXT
+      echo $ISSUE_CONTEXT
       
 #      tr '"' '\"' <'${{ github.event.issue.body }}' > temp.txt
 #      tr -d '\n' <temp.txt >temp1.txt 
@@ -45,9 +45,9 @@ jobs:
   - name: Get summary
     id: summary
     env:
-      GITHUB_CONTEXT: ${{ toJson(github.event.issue) }}
+      ISSUE_CONTEXT: ${{ toJson(github.event.issue) }}
     run: |
-      echo $GITHUB_CONTEXT > temp.txt
+      echo $ISSUE_CONTEXT > temp.txt
       sed ':a;N;$!ba;s/\n/ /g' <temp.txt >temp1.txt 
       sed ':a;N;$!ba;s/\r/ /g' <temp1.txt >temp2.txt
       sed -nr 's/.*### Brief description of the announcement(.*)### Detailed context.*/\1/p' <temp2.txt >temp3.txt
@@ -71,9 +71,9 @@ jobs:
   - name: Sanitize description
     id: description
     env:
-      GITHUB_CONTEXT: ${{ toJson(github.event.issue) }}
+      ISSUE_CONTEXT: ${{ toJson(github.event.issue) }}
     run: |
-      echo $GITHUB_CONTEXT > temp.txt
+      echo $ISSUE_CONTEXT > temp.txt
       sed ':a;N;$!ba;s/\n/\\n/g' <temp.txt >temp1.txt 
       sed ':a;N;$!ba;s/\r/\\r/g' <temp1.txt >temp2.txt
       sed -nr 's/.*"body": (.*), "closed_at.*/\1/p' <temp2.txt >temp3.txt
