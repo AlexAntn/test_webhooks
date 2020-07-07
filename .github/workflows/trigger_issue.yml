@@ -15,11 +15,7 @@ jobs:
     run: |
       echo $ISSUE_CONTEXT > temp_title.txt
       echo $(cat temp_title.txt)
-      sed -nr 's/.*"title": (.*), "updated.*/\1/p' <temp_title.txt >temp_title1.txt
-      echo $(cat temp_title1.txt)
-      sed ':a;N;$!ba;s/"/\"/g' <temp_title1.txt >temp_title2.txt
-      echo $(cat temp_title2.txt)
-      sed ':a;N;$!ba;s/'\''/\\'\''/g' <temp_title2.txt >title.txt
+      sed -nr 's/.*"title": (.*), "updated.*/\1/p' <temp_title.txt >title.txt
       echo $(cat title.txt)
       if [[ $(cat title.txt) == *"Release"* ]]
       then
@@ -27,6 +23,15 @@ jobs:
       else
         echo "::set-output name=release::false"
       fi
+      
+#      echo $ISSUE_CONTEXT > temp_title.txt
+#      echo $(cat temp_title.txt)
+#      sed -nr 's/.*"title": (.*), "updated.*/\1/p' <temp_title.txt >temp_title1.txt
+#      echo $(cat temp_title1.txt)
+#      sed ':a;N;$!ba;s/"/\"/g' <temp_title1.txt >temp_title2.txt
+#      echo $(cat temp_title2.txt)
+#      sed ':a;N;$!ba;s/'\''/\\'\''/g' <temp_title2.txt >title.txt
+#      echo $(cat title.txt)
   - name: Dump GitHub context
     env:
       GITHUB_CONTEXT: ${{ toJson(github) }}
@@ -48,13 +53,19 @@ jobs:
       ISSUE_CONTEXT: ${{ toJson(github.event.issue) }}
     run: |
       echo $ISSUE_CONTEXT > temp.txt
-      sed ':a;N;$!ba;s/\n/ /g' <temp.txt >temp1.txt 
-      sed ':a;N;$!ba;s/\r/ /g' <temp1.txt >temp2.txt
-      sed -nr 's/.*### Brief description of the announcement(.*)### Detailed context.*/\1/p' <temp2.txt >temp3.txt
-      sed ':a;N;$!ba;s/"/\"/g' <temp3.txt >temp4.txt
-      sed ':a;N;$!ba;s/\x27/\\\x27/g' <temp4.txt >temp5.txt
+      sed -nr 's/.*### Brief description of the announcement(.*)### Detailed context.*/\1/p' <temp.txt >temp5.txt
       echo "::set-output name=summary::$(cat temp5.txt)"
       echo $(cat temp5.txt)
+      
+      
+#      echo $ISSUE_CONTEXT > temp.txt
+#      sed ':a;N;$!ba;s/\n/ /g' <temp.txt >temp1.txt 
+#      sed ':a;N;$!ba;s/\r/ /g' <temp1.txt >temp2.txt
+#      sed -nr 's/.*### Brief description of the announcement(.*)### Detailed context.*/\1/p' <temp2.txt >temp3.txt
+#      sed ':a;N;$!ba;s/"/\"/g' <temp3.txt >temp4.txt
+#      sed ':a;N;$!ba;s/\x27/\\\x27/g' <temp4.txt >temp5.txt
+#      echo "::set-output name=summary::$(cat temp5.txt)"
+#      echo $(cat temp5.txt)
       
   - name: Get title
     id: title
@@ -62,11 +73,17 @@ jobs:
       ISSUE_CONTEXT: ${{ toJson(github.event.issue) }}
     run: |
       echo $ISSUE_CONTEXT > temp_title.txt
-      sed -nr 's/.*"title": (.*), "updated.*/\1/p' <temp_title.txt >temp_title1.txt
-      sed ':a;N;$!ba;s/"/\"/g' <temp_title1.txt >temp_title2.txt
-      sed ':a;N;$!ba;s/'\''/\\'\''/g' <temp_title2.txt >title.txt
+      sed -nr 's/.*"title": (.*), "updated.*/\1/p' <temp_title.txt >title.txt
       echo "::set-output name=title::$(cat title.txt)"
       echo $(cat title.txt)
+      
+      
+#      echo $ISSUE_CONTEXT > temp_title.txt
+#      sed -nr 's/.*"title": (.*), "updated.*/\1/p' <temp_title.txt >temp_title1.txt
+#      sed ':a;N;$!ba;s/"/\"/g' <temp_title1.txt >temp_title2.txt
+#      sed ':a;N;$!ba;s/'\''/\\'\''/g' <temp_title2.txt >title.txt
+#      echo "::set-output name=title::$(cat title.txt)"
+#      echo $(cat title.txt)
       
   - name: Sanitize description
     id: description
@@ -75,19 +92,25 @@ jobs:
     run: |
       echo $ISSUE_CONTEXT > temp.txt
       echo $(cat temp.txt)    
-      sed -nr 's/.*"body": (.*), "closed_at.*/\1/p' <temp.txt >temp1.txt
-      echo $(cat temp1.txt)    
-      sed ':a;N;$!ba;s/\\n/\\\\n/g' <temp1.txt >temp2.txt 
-      echo $(cat temp2.txt)    
-      sed ':a;N;$!ba;s/\\r/ /g' <temp2.txt >temp3.txt
-      echo $(cat temp3.txt)    
-      sed ':a;N;$!ba;s/"/\"/g' <temp3.txt >temp4.txt
-      echo $(cat temp4.txt)    
-      sed ':a;N;$!ba;s/'\''/\\'\''/g' <temp4.txt >temp5.txt 
+      sed -nr 's/.*"body": (.*), "closed_at.*/\1/p' <temp.txt >temp5.txt
       echo "::set-output name=description::$(cat temp5.txt)"
       echo $(cat temp5.txt)        
       
-#      sed ':a;N;$!ba;s/\n/\\\n/g' <temp.txt >temp1.txt 
+
+#      echo $ISSUE_CONTEXT > temp.txt
+#      echo $(cat temp.txt)    
+#      sed -nr 's/.*"body": (.*), "closed_at.*/\1/p' <temp.txt >temp1.txt
+#      echo $(cat temp1.txt)    
+#      sed ':a;N;$!ba;s/\\n/\\\\n/g' <temp1.txt >temp2.txt 
+#      echo $(cat temp2.txt)    
+#      sed ':a;N;$!ba;s/\\r/ /g' <temp2.txt >temp3.txt
+#      echo $(cat temp3.txt)    
+#      sed ':a;N;$!ba;s/"/\"/g' <temp3.txt >temp4.txt
+#      echo $(cat temp4.txt)    
+#      sed ':a;N;$!ba;s/'\''/\\'\''/g' <temp4.txt >temp5.txt 
+#      echo "::set-output name=description::$(cat temp5.txt)"
+#      echo $(cat temp5.txt)       
+      
   - name: Get current date
     id: date
     run: |
