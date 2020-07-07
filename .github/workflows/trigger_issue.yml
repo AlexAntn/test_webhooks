@@ -49,7 +49,7 @@ jobs:
     env:
       ISSUE_CONTEXT: ${{ toJson(github.event.issue) }}
     run: |
-      echo $ISSUE_CONTEXT | grep -o -P '(?<="title": ").*(?=", "updated)' > title.txt
+      echo $ISSUE_CONTEXT | grep -o -P '(?<="title": ).*(?=, "updated)' > title.txt
       echo "::set-output name=title::$(cat title.txt)"
       echo $(cat title.txt)
       
