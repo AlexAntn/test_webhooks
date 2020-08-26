@@ -61,3 +61,4 @@ jobs:
       repository: icub-tech-iit/code
       event-type: announcement_launched
       client-payload: '{"description": ${{ steps.description.outputs.description }}, "id": "${{ steps.date.outputs.date }}", "title": ${{ steps.title.outputs.title }}, "date": "${{ steps.date.outputs.date_spelled }}", "summary": "${{ steps.summary.outputs.summary }}", "image": "???", "type" : "announcement_launched", "release": "${{ steps.rel_annou.outputs.release }}"}'
+
