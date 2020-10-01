@@ -23,5 +23,5 @@ jobs:
       run: |
         echo "${{ steps.parsed_branch.outputs.branch }}"
         echo "${{ github.event.ref }}"
-        echo ${{ github.event.ref }} | sed -nr 's/.*\/refs\/heads\/(.*)/\1/p')
+        echo ${{ github.event.ref }} | sed -nr 's/.*\/refs\/heads\/(.*)/\1/p'
         
