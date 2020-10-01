@@ -1,0 +1,25 @@
+
+
+name: user_input_PR
+
+
+on:
+  push:
+      branches:
+          - 'user_changes*'
+
+jobs:
+  trigger_appsAway:
+    runs-on: ubuntu-latest
+    steps:
+    - name: print event
+      run: echo " ${{ toJson(github.event) }}"
+      
+    - name: Parse branch name
+      id: parsed_branch
+      run: |
+        echo ::set-output name=branch::$(echo ${{ github.event.ref }} | sed -nr 's/.*\/refs\/heads\/(.*)/\1/p')
+        
+    - name: echo parsed branch
+      run: echo "${{ steps.parsed_branch.outputs.branch }}"
+        
