@@ -18,10 +18,10 @@ jobs:
     - name: Parse branch name
       id: parsed_branch
       run: |
-        echo ::set-output name=branch::$(echo ${{ github.event.after }} | sed -nr 's/.*\/refs\/heads\/(.*)/\1/p')
+        echo ::set-output name=branch::$(echo "${{ github.event.ref }}" | sed -nr 's/.*\/refs\/heads\/(.*)/\1/p')
         
     - name: echo parsed branch
       run: |
         echo "${{ steps.parsed_branch.outputs.branch }}"
-        echo "${{ github.event.after }}"
+        echo "${{ github.event.ref }}"
         
