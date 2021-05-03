@@ -4,4 +4,7 @@ on:
     
 jobs:
   print_hello:
-    run: echo "hello"
+    runs-on: ubuntu-latest
+    steps:
+      - name: say_hello
+        run: echo "hello"
