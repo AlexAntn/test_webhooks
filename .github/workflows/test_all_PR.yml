@@ -9,4 +9,4 @@ jobs:
       - name: say_hello
         run: |
           echo "hello"
-          echo ${{ github.event }}
+          echo ${{ toJson(github.event) }}
