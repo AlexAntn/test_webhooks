@@ -2,7 +2,10 @@ on:
   pull_request:
     branches: 'add_app*'
     types: [closed]
-    
+
 jobs:
   print_hello:
-    run: echo "hello"
+    runs-on: ubuntu-latest
+    steps:
+      - name: say_hello
+        run: echo "hello"
