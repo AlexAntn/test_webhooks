@@ -2,8 +2,6 @@ on:
   pull_request:
     branches: 
     - 'add_app*'
-    types: 
-    - closed
   push:
     branches: 
     - 'add_app*'
