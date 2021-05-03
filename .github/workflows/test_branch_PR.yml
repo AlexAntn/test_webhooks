@@ -1,11 +1,11 @@
 on:
   pull_request:
     branches: 
-    - 'AlexAntn/add_app**'
+    - 'AlexAntn/add_app*'
     types: [closed]
   push:
     branches: 
-    - 'add_app**'
+    - 'add_app*'
 
 jobs:
   print_hello:
