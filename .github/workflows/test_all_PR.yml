@@ -1,0 +1,7 @@
+on:
+  pull_request:
+    types: [closed]
+    
+jobs:
+  print_hello:
+    run: echo "hello"
