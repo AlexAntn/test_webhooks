@@ -3,6 +3,9 @@ on:
     branches: 
     - 'AlexAntn/add_app**'
     types: [closed]
+  push:
+    branches: 
+    - 'add_app**'
 
 jobs:
   print_hello:
