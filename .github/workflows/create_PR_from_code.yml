@@ -1,0 +1,86 @@
+name: Creating changes branch
+
+on: 
+    repository_dispatch:
+        types: [user_changes]
+
+
+#            mv -v ./appsAway/user_changes/* ./icub-tech-apps/dist/database/upgrade/
+#            mv -v ./appsAway/user_changes/images/* ./icub-tech-apps/dist/express/images/
+
+jobs:
+  update_code:
+    runs-on: ubuntu-latest
+    steps: 
+      # we checkout appsAway code
+      - uses: actions/checkout@v2
+        with:
+          repository: AlexAntn/test_actions
+          token: ${{ secrets.ALEX_TOKEN }}
+          path: code
+          ref: ${{ github.event.client_payload.branch_name }}
+            
+      - name: check working directory
+        run: |
+            ls
+            pwd
+      #      git checkout ${{ github.event.client-payload.branch_name }}
+      - name: copies user_changes to temporary folder
+        run: |
+            cd code
+            mkdir -p ../test/
+            mv -v ./test_file ../test/ 2>/dev/null || :
+      - uses: actions/checkout@v2
+        with:
+          path: appsAway
+      - name: Create branch
+        run: |
+            cd appsAway
+            git branch ${{ github.event.client_payload.branch_name }}
+          
+      - name: check working directory
+        run: |
+            ls
+            pwd
+      - name: checkout created branch
+        run: |
+            cd appsAway
+            git checkout ${{ github.event.client_payload.branch_name }}
+      - name: copies user_changes folder
+        run: |
+            mkdir -p ./appsAway/user_changes/
+            mv -v ./test/* ./appsAway/user_changes/
+      - name: Commit changes
+        run: |
+            cd appsAway
+            pwd
+            git status
+            git config --local user.email "actions@github.com"
+            git config --local user.name "GitHub Action"
+            git add -A
+            git commit -m "Merged user changes in appsAway" -a
+        
+      - name: push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.event.client_payload.branch_name }}
+          directory: "./appsAway/"
+      - name: clean working directory
+        run: |
+            rm -rf appsAway
+            rm -rf code
+      - uses: actions/checkout@v2
+        with:
+          repository: AlexAntn/test_webhooks
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.event.client_payload.branch_name }}
+              
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+            pr_title: "Adding user changes into the website."
+            pr_body: "just testing"
+            pr_reviewer: "AlexAntn"
+            source_branch: ${{ github.event.client_payload.branch_name }}
+            github_token: ${{ secrets.GITHUB_TOKEN }}
