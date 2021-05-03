@@ -7,4 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: say_hello
-        run: echo "hello"
+        run: |
+          echo "hello"
+          echo ${{ github.event }}
