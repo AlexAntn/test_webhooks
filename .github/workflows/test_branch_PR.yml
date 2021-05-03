@@ -1,7 +1,7 @@
 on:
   pull_request:
     branches: 
-      - add_app*
+      - add_app**
     types: [closed]
 
 jobs:
