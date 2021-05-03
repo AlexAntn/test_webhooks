@@ -2,9 +2,9 @@ on:
   pull_request:
     branches: 
     - 'add_app*'
-  push:
-    branches: 
-    - 'add_app*'
+  #push:
+  #  branches: 
+  #  - 'add_app*'
 
 jobs:
   print_hello:
