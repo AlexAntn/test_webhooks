@@ -1,6 +1,7 @@
 name: trigger
 
-on: pull-request
+on: 
+    push:
     #release:
         #types: [published, created, edited]        
 
