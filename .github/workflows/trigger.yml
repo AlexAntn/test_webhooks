@@ -12,6 +12,6 @@ jobs:
         - name: Repository Dispatch
           uses: peter-evans/repository-dispatch@v1
           with:
-            token: ${{ secrets.TOKEN_VALUE_HERE }}
+            token: ${{ secrets.CODE_REPO_TOKEN }}
             repository: icub-tech-iit/code
             event-type: superbuild_release
