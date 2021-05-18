@@ -1,4 +1,4 @@
-name: trigger
+name: trigger_repo
 
 on: 
     push:
