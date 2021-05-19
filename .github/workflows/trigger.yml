@@ -14,5 +14,5 @@ jobs:
           with:
             token: ${{ secrets.CODE_REPO_TOKEN }}
             repository: vvasco/code
-            event-type: superbuild_built
-            client-payload: '{"type": "superbuild_built", "img_list": ["superbuild", "superbuild-icubhead", "superbuild-nvidia", "google-vision"]}'
+            event-type: repository_trigger
+            client-payload: '{"type": "repository_trigger", "img_list": ["superbuild", "superbuild-icubhead", "superbuild-nvidia", "google-vision"]}'
