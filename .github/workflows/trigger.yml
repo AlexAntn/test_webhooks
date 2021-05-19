@@ -14,5 +14,5 @@ jobs:
           with:
             token: ${{ secrets.CODE_REPO_TOKEN }}
             repository: vvasco/code
-            event-type: superbuild_release
-            client-payload: '{"type": "superbuild_release"}'
+            event-type: superbuild_built
+            client-payload: '{"type": "superbuild_built"}'
