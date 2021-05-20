@@ -13,6 +13,6 @@ jobs:
           uses: peter-evans/repository-dispatch@v1
           with:
             token: ${{ secrets.CODE_REPO_TOKEN }}
-            repository: AlexAntn/code
+            repository: icub-tech-iit/code
             event-type: repository_trigger
-            client-payload: '{"type": "repository_trigger", "img_list": "superbuild superbuild-icubhead superbuild-nvidia google-vision"}'
+            client-payload: '{"type": "repository_trigger", "img_list": "ubuntu2004mesa"}'
