@@ -14,8 +14,8 @@ jobs:
           uses: peter-evans/repository-dispatch@v1
           with:
             token: ${{ secrets.APPSAWAY_REPO_ACCSS_TOKEN }}
-            repository: icub-tech-iit/appsAway
-            event-type: GRGZ_build_devel
-            client-payload: '{"version": "${{ steps.get_version.outputs.VERSION }}", "type": "GRGZ_build_devel", "graspgazebotag_full": "icubteamcode/icubgraspgazebo:master-unstable_sources", "graspgazebotag_thin": "icubteamcode/icubgraspgazebo:master-unstable_binaries", "start_image_full": "SUPERBUILD_FULL_NAME=icubteamcode/superbuild:master-unstable_sources", "start_image_thin": "SUPERBUILD_THIN_NAME=icubteamcode/superbuild:master-unstable_binaries", "docker_path": "./dockerfile_images/demos/graspGazebo"}'
+            repository: AlexAntn/code
+            event-type: release_trigger
+            client-payload: '{"version": "v2022.02.0"}'
 
 
