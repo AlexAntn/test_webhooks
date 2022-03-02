@@ -14,7 +14,7 @@ jobs:
           uses: peter-evans/repository-dispatch@v1
           with:
             token: ${{ secrets.APPSAWAY_REPO_ACCSS_TOKEN }}
-            repository: AlexAntn/code
+            repository: icub-tech-iit/code
             event-type: release_trigger
             client-payload: '{"version": "v2022.02.0"}'
 
